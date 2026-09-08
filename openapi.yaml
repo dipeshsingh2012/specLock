@@ -1,0 +1,459 @@
+openapi: 3.1.0
+info:
+  title: SpecLock Recommendation Engine
+  description: Two-stage zero-error hardware compatibility recommendation engine combining
+    deterministic graph pruning with neural semantic ranking.
+  version: 0.1.0
+servers:
+- url: http://localhost:8000
+  description: Local development server
+paths:
+  /api/v1/recommend/compatible:
+    get:
+      tags:
+      - recommendations
+      summary: Two-Stage Hardware Fitment Filtering and Neural Ranking
+      description: "Executes Two-Stage Hybrid Recommendation:\n1. Stage 1: Deterministic\
+        \ graph traversal returning 100% physically and electrically\n   compatible\
+        \ accessories for the specified machine.\n2. Stage 2: Probabilistic neural\
+        \ bi-encoder ranking with economic gross margin weighting."
+      operationId: getCompatibleRecommendations
+      parameters:
+      - name: machine_id
+        in: query
+        required: true
+        schema:
+          type: string
+          description: Identifier of the target machine (e.g., 'M_BES870XL')
+          examples:
+          - M_BES870XL
+          title: Machine Id
+        description: Identifier of the target machine (e.g., 'M_BES870XL')
+      - name: query
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Optional free-form user search intent query applied during
+            Stage 2 semantic ranking
+          title: Query
+        description: Optional free-form user search intent query applied during Stage
+          2 semantic ranking
+      - name: target_voltage
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Regional checkout voltage override (e.g., '120V', '240V')
+          title: Target Voltage
+        description: Regional checkout voltage override (e.g., '120V', '240V')
+      - name: category
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Optional product taxonomy category filter (e.g., 'portafilters')
+          title: Category
+        description: Optional product taxonomy category filter (e.g., 'portafilters')
+      - name: primary_spec_key
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Primary physical specification key (defaults to settings.primary_spec_key)
+          title: Primary Spec Key
+        description: Primary physical specification key (defaults to settings.primary_spec_key)
+      - name: top_k
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+            minimum: 1
+          - type: 'null'
+          description: Maximum number of top-ranked recommendations to return
+          title: Top K
+        description: Maximum number of top-ranked recommendations to return
+      - name: alpha
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          description: Stage 2 semantic relevance weight (default 0.7)
+          title: Alpha
+        description: Stage 2 semantic relevance weight (default 0.7)
+      - name: beta
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          description: Stage 2 margin weight (default 0.3)
+          title: Beta
+        description: Stage 2 margin weight (default 0.3)
+      - name: stage2
+        in: query
+        required: false
+        schema:
+          type: boolean
+          description: Whether to execute Stage 2 ranking (True) or return raw unranked
+            Stage 1 candidates (False)
+          default: true
+          title: Stage2
+        description: Whether to execute Stage 2 ranking (True) or return raw unranked
+          Stage 1 candidates (False)
+      responses:
+        '200':
+          description: Compatibility constraints evaluated and accessories ranked
+            successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecommendationResponse'
+        '404':
+          description: Specified machine_id not found in compatibility graph.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: Graph compatibility engine or ranking encoder is not initialized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /:
+    get:
+      tags:
+      - system
+      summary: Service Metadata & Documentation Pointer
+      description: Returns service metadata and interactive OpenAPI documentation
+        link.
+      operationId: getRootInfo
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+                title: Response Getrootinfo
+  /health:
+    get:
+      tags:
+      - system
+      summary: Operational Service Health and Graph Diagnostics
+      description: 'Root-level operational health probe returning runtime system status
+
+        and live hardware catalog metrics.'
+      operationId: getSystemHealth
+      responses:
+        '200':
+          description: System operational and graph topology statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+        '503':
+          description: Graph compatibility engine is not initialized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    AccessoryItem:
+      properties:
+        id:
+          type: string
+          title: Id
+          description: Unique accessory identifier
+        name:
+          type: string
+          title: Name
+          description: Accessory product display name
+        sku:
+          type: string
+          title: Sku
+          description: Manufacturer SKU
+        category:
+          type: string
+          title: Category
+          description: Product category taxonomy
+        price:
+          type: number
+          minimum: 0.0
+          title: Price
+          description: MSRP price in USD
+        margin_rate:
+          type: number
+          maximum: 1.0
+          minimum: 0.0
+          title: Margin Rate
+          description: Gross margin rate percentage
+        fits:
+          additionalProperties:
+            type: string
+          type: object
+          title: Fits
+          description: Physical and electrical fitment parameters
+        description:
+          type: string
+          title: Description
+          description: Product marketing summary
+        semantic_similarity:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: -1.0
+          - type: 'null'
+          title: Semantic Similarity
+          description: Stage 2 cosine similarity score between query/context and accessory
+        composite_score:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Composite Score
+          description: 'Stage 2 final composite ranking score: alpha * similarity
+            + beta * margin_rate'
+      type: object
+      required:
+      - id
+      - name
+      - sku
+      - category
+      - price
+      - margin_rate
+      - fits
+      - description
+      title: AccessoryItem
+      description: Serialized projection of a compatible accessory returned to clients.
+      examples:
+      - category: workflow_tools
+        composite_score: 0.6148
+        description: Anodized aluminum magnetic dosing collar designed exclusively
+          for 54mm Breville portafilters.
+        fits:
+          collar_diameter: 54mm
+          voltage: universal
+        id: A_FUNNEL_MAG_54
+        margin_rate: 0.62
+        name: 54mm Magnetic Dosing Funnel
+        price: 24.95
+        semantic_similarity: 0.6125
+        sku: ACC-DF-54-MAG
+    ErrorResponse:
+      properties:
+        detail:
+          type: string
+          title: Detail
+          description: Descriptive explanation of the error condition
+      type: object
+      required:
+      - detail
+      title: ErrorResponse
+      description: Standardized error payload returned across API endpoints.
+      examples:
+      - detail: Machine with ID 'M_NON_EXISTENT' not found in compatibility graph.
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    HealthResponse:
+      properties:
+        status:
+          type: string
+          title: Status
+          description: Service health status
+          default: ok
+        brand:
+          type: string
+          title: Brand
+          description: Target hardware ecosystem brand
+        total_machines:
+          type: integer
+          minimum: 0.0
+          title: Total Machines
+          description: Total machines loaded in graph
+        total_accessories:
+          type: integer
+          minimum: 0.0
+          title: Total Accessories
+          description: Total accessories loaded in graph
+        total_specifications:
+          type: integer
+          minimum: 0.0
+          title: Total Specifications
+          description: Total specification nodes in graph
+      type: object
+      required:
+      - brand
+      - total_machines
+      - total_accessories
+      - total_specifications
+      title: HealthResponse
+      description: Health check and catalog topology diagnostics.
+      examples:
+      - brand: Breville
+        status: ok
+        total_accessories: 40
+        total_machines: 12
+        total_specifications: 18
+    RecommendationResponse:
+      properties:
+        machine_id:
+          type: string
+          title: Machine Id
+          description: Target machine queried
+        target_voltage:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Target Voltage
+          description: Regional checkout voltage applied
+        category:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Category
+          description: Category filter applied, if any
+        query:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Query
+          description: User search intent query applied during Stage 2 ranking
+        alpha:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          title: Alpha
+          description: Stage 2 semantic relevance weight applied
+        beta:
+          anyOf:
+          - type: number
+            maximum: 1.0
+            minimum: 0.0
+          - type: 'null'
+          title: Beta
+          description: Stage 2 profit margin weight applied
+        total_compatible:
+          type: integer
+          minimum: 0.0
+          title: Total Compatible
+          description: Count of accessories passing all constraints
+        total_evaluated:
+          type: integer
+          minimum: 0.0
+          title: Total Evaluated
+          description: Total candidate accessories evaluated in Stage 1
+        total_rejected:
+          type: integer
+          minimum: 0.0
+          title: Total Rejected
+          description: Count of incompatible accessories pruned
+        latency_ms:
+          type: number
+          minimum: 0.0
+          title: Latency Ms
+          description: Stage 1 traversal latency in milliseconds
+        items:
+          items:
+            $ref: '#/components/schemas/AccessoryItem'
+          type: array
+          title: Items
+          description: List of compatible accessories
+      type: object
+      required:
+      - machine_id
+      - total_compatible
+      - total_evaluated
+      - total_rejected
+      - latency_ms
+      title: RecommendationResponse
+      description: Compatibility recommendations payload with Stage 1 fitment and
+        Stage 2 ranking.
+      examples:
+      - alpha: 0.7
+        beta: 0.3
+        items:
+        - category: workflow_tools
+          composite_score: 0.6028
+          description: Hands-free dosing funnel that activates the integrated grinder
+            cradle on Barista Express and Barista Pro 54mm machines.
+          fits:
+            collar_diameter: 54mm
+            voltage: universal
+          id: A_FUNNEL_PRESS_54
+          margin_rate: 0.58
+          name: 54mm Grinder Trigger Dosing Funnel
+          price: 29.95
+          semantic_similarity: 0.6125
+          sku: ACC-DF-54-TRIG
+        latency_ms: 0.068
+        machine_id: M_BES870XL
+        total_compatible: 28
+        total_evaluated: 29
+        total_rejected: 1
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+tags:
+- name: recommendations
+  description: Two-stage constrained hardware compatibility filtering and neural ranking.
+- name: system
+  description: System operational health checks, diagnostics, and catalog topology
+    metrics.

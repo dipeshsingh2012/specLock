@@ -1,0 +1,714 @@
+{
+  "catalog_version": "1.0.0",
+  "brand": "Breville",
+  "machines": [
+    {
+      "id": "M_BES870XL",
+      "name": "Barista Express Espresso Machine",
+      "sku": "BES870XL",
+      "series": "Barista",
+      "price": 749.95,
+      "specs": {
+        "collar_diameter": "54mm",
+        "voltage": "120V",
+        "region": "US",
+        "steam_wand_type": "standard_360",
+        "group_head_type": "3_ear_54mm"
+      },
+      "description": "All-in-one espresso machine with integrated conical burr grinder and 54mm portafilter system."
+    },
+    {
+      "id": "M_BES870_UK",
+      "name": "Barista Express Espresso Machine (240V)",
+      "sku": "BES870BSS4GUK1",
+      "series": "Barista",
+      "price": 799.95,
+      "specs": {
+        "collar_diameter": "54mm",
+        "voltage": "240V",
+        "region": "UK_EU",
+        "steam_wand_type": "standard_360",
+        "group_head_type": "3_ear_54mm"
+      },
+      "description": "European voltage 240V all-in-one espresso machine with integrated grinder and 54mm portafilter."
+    },
+    {
+      "id": "M_BES878BSS",
+      "name": "Barista Pro Espresso Machine",
+      "sku": "BES878BSS",
+      "series": "Barista",
+      "price": 849.95,
+      "specs": {
+        "collar_diameter": "54mm",
+        "voltage": "120V",
+        "region": "US",
+        "steam_wand_type": "thermojet_wand",
+        "group_head_type": "3_ear_54mm"
+      },
+      "description": "ThermoJet heated 3-second startup espresso machine with LCD display and 54mm group head."
+    },
+    {
+      "id": "M_BES880BSS",
+      "name": "Barista Touch Espresso Machine",
+      "sku": "BES880BSS",
+      "series": "Barista",
+      "price": 999.95,
+      "specs": {
+        "collar_diameter": "54mm",
+        "voltage": "120V",
+        "region": "US",
+        "steam_wand_type": "auto_milq_thermojet",
+        "group_head_type": "3_ear_54mm"
+      },
+      "description": "Automated touchscreen espresso machine with automated microfoam milk texturing and 54mm group head."
+    },
+    {
+      "id": "M_BES876BSS",
+      "name": "Barista Express Impress Machine",
+      "sku": "BES876BSS",
+      "series": "Barista",
+      "price": 899.95,
+      "specs": {
+        "collar_diameter": "54mm",
+        "voltage": "120V",
+        "region": "US",
+        "steam_wand_type": "standard_360",
+        "group_head_type": "3_ear_54mm"
+      },
+      "description": "Assisted tamping and intelligent dosing system with 54mm portafilter format."
+    },
+    {
+      "id": "M_BES500BSS",
+      "name": "Bambino Plus Espresso Machine",
+      "sku": "BES500BSS",
+      "series": "Bambino",
+      "price": 499.95,
+      "specs": {
+        "collar_diameter": "54mm",
+        "voltage": "120V",
+        "region": "US",
+        "steam_wand_type": "auto_milq_thermojet",
+        "group_head_type": "3_ear_54mm"
+      },
+      "description": "Compact footprint espresso machine with automatic milk texturing and 54mm portafilter."
+    },
+    {
+      "id": "M_BES450BSS",
+      "name": "Bambino Espresso Machine",
+      "sku": "BES450BSS",
+      "series": "Bambino",
+      "price": 299.95,
+      "specs": {
+        "collar_diameter": "54mm",
+        "voltage": "120V",
+        "region": "US",
+        "steam_wand_type": "manual_thermojet",
+        "group_head_type": "3_ear_54mm"
+      },
+      "description": "Entry-level ultra-compact espresso machine featuring 54mm group head and instant ThermoJet heat."
+    },
+    {
+      "id": "M_BES840XL",
+      "name": "Infuser Espresso Machine",
+      "sku": "BES840XL",
+      "series": "Infuser",
+      "price": 599.95,
+      "specs": {
+        "collar_diameter": "54mm",
+        "voltage": "120V",
+        "region": "US",
+        "steam_wand_type": "standard_360",
+        "group_head_type": "3_ear_54mm"
+      },
+      "description": "Pre-infusion temperature controlled espresso machine utilizing 54mm portafilter baskets."
+    },
+    {
+      "id": "M_BES920XL",
+      "name": "Dual Boiler Espresso Machine",
+      "sku": "BES920XL",
+      "series": "Commercial_Dual",
+      "price": 1599.95,
+      "specs": {
+        "collar_diameter": "58mm",
+        "voltage": "120V",
+        "region": "US",
+        "steam_wand_type": "commercial_360",
+        "group_head_type": "2_ear_58mm"
+      },
+      "description": "Prosumer dual stainless steel boiler machine with commercial 58mm group head and PID control."
+    },
+    {
+      "id": "M_BES920_UK",
+      "name": "Dual Boiler Espresso Machine (240V)",
+      "sku": "BES920UK",
+      "series": "Commercial_Dual",
+      "price": 1649.95,
+      "specs": {
+        "collar_diameter": "58mm",
+        "voltage": "240V",
+        "region": "UK_EU",
+        "steam_wand_type": "commercial_360",
+        "group_head_type": "2_ear_58mm"
+      },
+      "description": "European 240V dual stainless steel boiler machine with commercial 58mm group head."
+    },
+    {
+      "id": "M_BES980XL",
+      "name": "Oracle Espresso Machine",
+      "sku": "BES980XL",
+      "series": "Commercial_Oracle",
+      "price": 2199.95,
+      "specs": {
+        "collar_diameter": "58mm",
+        "voltage": "120V",
+        "region": "US",
+        "steam_wand_type": "auto_commercial_wand",
+        "group_head_type": "2_ear_58mm"
+      },
+      "description": "Automated manual dual boiler machine with automated 58mm grinding, dosing, and tamping."
+    },
+    {
+      "id": "M_BES990BSS",
+      "name": "Oracle Touch Espresso Machine",
+      "sku": "BES990BSS",
+      "series": "Commercial_Oracle",
+      "price": 2799.95,
+      "specs": {
+        "collar_diameter": "58mm",
+        "voltage": "120V",
+        "region": "US",
+        "steam_wand_type": "auto_commercial_touch",
+        "group_head_type": "2_ear_58mm"
+      },
+      "description": "Automated touchscreen prosumer dual boiler espresso machine with commercial 58mm portafilter."
+    }
+  ],
+  "accessories": [
+    {
+      "id": "A_FUNNEL_MAG_54",
+      "name": "54mm Magnetic Dosing Funnel",
+      "sku": "ACC-DF-54-MAG",
+      "category": "workflow_tools",
+      "price": 24.95,
+      "margin_rate": 0.62,
+      "fits": {
+        "collar_diameter": "54mm",
+        "voltage": "universal"
+      },
+      "description": "Anodized aluminum magnetic dosing collar designed exclusively for 54mm Breville portafilters to prevent coffee grind spillage."
+    },
+    {
+      "id": "A_FUNNEL_PRESS_54",
+      "name": "54mm Grinder Trigger Dosing Funnel",
+      "sku": "ACC-DF-54-TRIG",
+      "category": "workflow_tools",
+      "price": 29.95,
+      "margin_rate": 0.58,
+      "fits": {
+        "collar_diameter": "54mm",
+        "voltage": "universal"
+      },
+      "description": "Hands-free dosing funnel that activates the integrated grinder cradle on Barista Express and Barista Pro 54mm machines."
+    },
+    {
+      "id": "A_PORTA_BOTT_54_WALNUT",
+      "name": "54mm Bottomless Portafilter (American Walnut)",
+      "sku": "ACC-BP-54-WNT",
+      "category": "portafilters",
+      "price": 64.95,
+      "margin_rate": 0.55,
+      "fits": {
+        "collar_diameter": "54mm",
+        "group_head_type": "3_ear_54mm",
+        "voltage": "universal"
+      },
+      "description": "Custom bottomless naked portafilter with natural walnut handle and 3-ear flange engineered for 54mm group heads."
+    },
+    {
+      "id": "A_PORTA_BOTT_54_STEEL",
+      "name": "54mm Stainless Naked Portafilter",
+      "sku": "ACC-BP-54-SS",
+      "category": "portafilters",
+      "price": 54.95,
+      "margin_rate": 0.50,
+      "fits": {
+        "collar_diameter": "54mm",
+        "group_head_type": "3_ear_54mm",
+        "voltage": "universal"
+      },
+      "description": "Heavy gauge 304 stainless steel bottomless portafilter with ergonomic composite grip for 54mm machines."
+    },
+    {
+      "id": "A_TAMPER_CAL_533",
+      "name": "53.3mm Precision Calibrated Spring Tamper",
+      "sku": "ACC-TMP-533-CAL",
+      "category": "tampers",
+      "price": 42.95,
+      "margin_rate": 0.52,
+      "fits": {
+        "collar_diameter": "54mm",
+        "voltage": "universal"
+      },
+      "description": "30lb constant-pressure calibrated spring tamper with 53.3mm stepped base for snug 54mm basket fitment and level extraction."
+    },
+    {
+      "id": "A_DISTRIB_PALM_533",
+      "name": "53.3mm Dual Head Palm Tamper & Coffee Distributor",
+      "sku": "ACC-DIST-533-DL",
+      "category": "tampers",
+      "price": 38.95,
+      "margin_rate": 0.60,
+      "fits": {
+        "collar_diameter": "54mm",
+        "voltage": "universal"
+      },
+      "description": "Adjustable depth 3-leaf distributor and leveler paired with flat palm tamper for 54mm Breville portafilter baskets."
+    },
+    {
+      "id": "A_BASKET_IMS_18G_54",
+      "name": "IMS Precision 18g Double Filter Basket 54mm",
+      "sku": "ACC-BSK-IMS-54",
+      "category": "baskets",
+      "price": 32.95,
+      "margin_rate": 0.45,
+      "fits": {
+        "collar_diameter": "54mm",
+        "voltage": "universal"
+      },
+      "description": "Competition grade precision circular perforation filter basket with ridge-less design for 54mm portafilters."
+    },
+    {
+      "id": "A_BASKET_DUAL_WALL_54",
+      "name": "54mm Dual Wall Pressurized 2-Cup Basket",
+      "sku": "ACC-BSK-DW-54",
+      "category": "baskets",
+      "price": 16.95,
+      "margin_rate": 0.40,
+      "fits": {
+        "collar_diameter": "54mm",
+        "voltage": "universal"
+      },
+      "description": "Replacement pressurized dual wall filter basket for pre-ground coffee extraction on 54mm group heads."
+    },
+    {
+      "id": "A_PUCK_SCREEN_535",
+      "name": "53.5mm Espresso Puck Screen (150 Micron)",
+      "sku": "ACC-PCK-535-150",
+      "category": "workflow_tools",
+      "price": 14.95,
+      "margin_rate": 0.68,
+      "fits": {
+        "collar_diameter": "54mm",
+        "voltage": "universal"
+      },
+      "description": "Multi-layer 150-micron sintered mesh puck screen to disperse water evenly and keep 54mm shower screens clean."
+    },
+    {
+      "id": "A_SHOWER_NANO_54",
+      "name": "Nanotech Precision Shower Screen 54mm",
+      "sku": "ACC-SS-NANO-54",
+      "category": "maintenance",
+      "price": 28.50,
+      "margin_rate": 0.48,
+      "fits": {
+        "collar_diameter": "54mm",
+        "voltage": "universal"
+      },
+      "description": "Non-stick nanotech coated dispersion shower screen engineered specifically for Breville 54mm group heads."
+    },
+    {
+      "id": "A_GASKET_SILICONE_54",
+      "name": "Food-Grade Silicone Group Head Seal Ring (54mm)",
+      "sku": "ACC-GSK-SIL-54",
+      "category": "maintenance",
+      "price": 9.95,
+      "margin_rate": 0.70,
+      "fits": {
+        "collar_diameter": "54mm",
+        "voltage": "universal"
+      },
+      "description": "Long-life steam and heat resistant silicone group gasket for all 54mm Breville espresso machines."
+    },
+    {
+      "id": "A_PORTA_BOTT_58_WALNUT",
+      "name": "58mm Bottomless Portafilter (American Walnut)",
+      "sku": "ACC-BP-58-WNT",
+      "category": "portafilters",
+      "price": 79.95,
+      "margin_rate": 0.55,
+      "fits": {
+        "collar_diameter": "58mm",
+        "group_head_type": "2_ear_58mm",
+        "voltage": "universal"
+      },
+      "description": "Commercial grade 2-ear bottomless portafilter with solid walnut handle for Dual Boiler and Oracle 58mm group heads."
+    },
+    {
+      "id": "A_PORTA_BOTT_58_STEEL",
+      "name": "58mm Stainless Bottomless Portafilter",
+      "sku": "ACC-BP-58-SS",
+      "category": "portafilters",
+      "price": 69.95,
+      "margin_rate": 0.50,
+      "fits": {
+        "collar_diameter": "58mm",
+        "group_head_type": "2_ear_58mm",
+        "voltage": "universal"
+      },
+      "description": "Solid stainless steel naked portafilter crafted for prosumer 58mm Breville Dual Boiler and Oracle series."
+    },
+    {
+      "id": "A_FUNNEL_MAG_58",
+      "name": "58mm Magnetic Dosing Collar",
+      "sku": "ACC-DF-58-MAG",
+      "category": "workflow_tools",
+      "price": 27.95,
+      "margin_rate": 0.60,
+      "fits": {
+        "collar_diameter": "58mm",
+        "voltage": "universal"
+      },
+      "description": "Wide-mouth magnetic dosing funnel precision CNC machined for standard 58mm portafilters."
+    },
+    {
+      "id": "A_TAMPER_CAL_585",
+      "name": "58.5mm Calibrated Spring Pressure Tamper",
+      "sku": "ACC-TMP-585-CAL",
+      "category": "tampers",
+      "price": 49.95,
+      "margin_rate": 0.52,
+      "fits": {
+        "collar_diameter": "58mm",
+        "voltage": "universal"
+      },
+      "description": "Flat stainless steel 58.5mm tamper with auto-leveling rim and 30lb spring for commercial 58mm baskets."
+    },
+    {
+      "id": "A_DISTRIB_PALM_585",
+      "name": "58.5mm Coffee Leveling & Distribution Tool",
+      "sku": "ACC-DIST-585-DL",
+      "category": "tampers",
+      "price": 44.95,
+      "margin_rate": 0.58,
+      "fits": {
+        "collar_diameter": "58mm",
+        "voltage": "universal"
+      },
+      "description": "Dual-sided depth adjustable distributor with 4-blade leveling fan for 58mm espresso baskets."
+    },
+    {
+      "id": "A_BASKET_VST_20G_58",
+      "name": "VST Precision 20g Ridgeless Filter Basket 58mm",
+      "sku": "ACC-BSK-VST-58",
+      "category": "baskets",
+      "price": 38.00,
+      "margin_rate": 0.38,
+      "fits": {
+        "collar_diameter": "58mm",
+        "voltage": "universal"
+      },
+      "description": "Individually laser-measured precision espresso basket calibrated for 58mm commercial portafilters."
+    },
+    {
+      "id": "A_PUCK_SCREEN_585",
+      "name": "58.5mm Contact Puck Screen (150 Micron)",
+      "sku": "ACC-PCK-585-150",
+      "category": "workflow_tools",
+      "price": 15.95,
+      "margin_rate": 0.65,
+      "fits": {
+        "collar_diameter": "58mm",
+        "voltage": "universal"
+      },
+      "description": "1.7mm thick sintered wire mesh contact screen for 58mm baskets preventing channeling and dispersion turbulence."
+    },
+    {
+      "id": "A_GASKET_SILICONE_58",
+      "name": "58mm Silicone Group Head Seal Ring",
+      "sku": "ACC-GSK-SIL-58",
+      "category": "maintenance",
+      "price": 11.95,
+      "margin_rate": 0.68,
+      "fits": {
+        "collar_diameter": "58mm",
+        "voltage": "universal"
+      },
+      "description": "High temperature red silicone steam ring replacement for Breville Dual Boiler and Oracle 58mm heads."
+    },
+    {
+      "id": "A_KNOCKBOX_MINI_SS",
+      "name": "Stainless Steel Mini Knock Box",
+      "sku": "ACC-KB-MINI-SS",
+      "category": "accessories_universal",
+      "price": 29.95,
+      "margin_rate": 0.48,
+      "fits": {
+        "collar_diameter": "universal",
+        "voltage": "universal"
+      },
+      "description": "Compact brushed stainless steel espresso knock box with shock-absorbing durable rubber strike bar."
+    },
+    {
+      "id": "A_KNOCKBOX_DRAWER",
+      "name": "Heavy Duty Under-Grinder Knock Box Drawer",
+      "sku": "ACC-KB-DRAWER",
+      "category": "accessories_universal",
+      "price": 89.95,
+      "margin_rate": 0.42,
+      "fits": {
+        "collar_diameter": "universal",
+        "voltage": "universal"
+      },
+      "description": "Commercial steel sliding knock drawer designed to sit under your espresso machine or bean grinder."
+    },
+    {
+      "id": "A_PITCHER_MILK_480",
+      "name": "Precision Latte Art Milk Frothing Pitcher 480ml",
+      "sku": "ACC-PITCH-480",
+      "category": "accessories_universal",
+      "price": 22.95,
+      "margin_rate": 0.55,
+      "fits": {
+        "collar_diameter": "universal",
+        "voltage": "universal"
+      },
+      "description": "16oz 304 food-grade stainless steel milk pitcher with narrow spout for pouring high-detail latte art."
+    },
+    {
+      "id": "A_PITCHER_TEMP_480",
+      "name": "The Temp Control Milk Frothing Jug 480ml",
+      "sku": "ACC-PITCH-TEMP-480",
+      "category": "accessories_universal",
+      "price": 39.95,
+      "margin_rate": 0.45,
+      "fits": {
+        "collar_diameter": "universal",
+        "voltage": "universal"
+      },
+      "description": "Stainless steel jug with integrated thermochromic temperature indicator strip ranging 55C to 75C."
+    },
+    {
+      "id": "A_MAT_TAMP_CORNER",
+      "name": "Silicone Corner Countertop Tamping Mat",
+      "sku": "ACC-MAT-CORNER",
+      "category": "accessories_universal",
+      "price": 18.95,
+      "margin_rate": 0.65,
+      "fits": {
+        "collar_diameter": "universal",
+        "voltage": "universal"
+      },
+      "description": "90-degree corner edge silicone tamping mat protecting countertops and holding portafilter firmly in place."
+    },
+    {
+      "id": "A_SCALE_PRECISION_TIMER",
+      "name": "Precision Espresso Scale with Smart Flow Timer",
+      "sku": "ACC-SCL-ESPR",
+      "category": "workflow_tools",
+      "price": 49.95,
+      "margin_rate": 0.52,
+      "fits": {
+        "collar_diameter": "universal",
+        "voltage": "universal"
+      },
+      "description": "0.1g high accuracy rechargeable digital scale with automatic drip detection and auto-tare stopwatch timer."
+    },
+    {
+      "id": "A_CLEAN_TABLETS_40PK",
+      "name": "Espresso Machine Cleaning Tablets (40 Pack)",
+      "sku": "ACC-CLN-TAB-40",
+      "category": "maintenance",
+      "price": 16.95,
+      "margin_rate": 0.60,
+      "fits": {
+        "collar_diameter": "universal",
+        "voltage": "universal"
+      },
+      "description": "Fast-dissolving concentrated backflush detergent tablets for removing coffee oils from group heads and valves."
+    },
+    {
+      "id": "A_DESCALE_POWDER_4PK",
+      "name": "Eco Descaler Powder Sachets (4 Pack)",
+      "sku": "ACC-DSC-PWD-4",
+      "category": "maintenance",
+      "price": 14.95,
+      "margin_rate": 0.58,
+      "fits": {
+        "collar_diameter": "universal",
+        "voltage": "universal"
+      },
+      "description": "Non-corrosive organic acid descaler formulated to dissolve mineral scale without damaging thermocoil heating blocks."
+    },
+    {
+      "id": "A_FILTER_WATER_CLARIS_6PK",
+      "name": "Resin Ion-Exchange Water Filter Cartridges (6 Pack)",
+      "sku": "ACC-WTR-RESIN-6",
+      "category": "maintenance",
+      "price": 24.95,
+      "margin_rate": 0.64,
+      "fits": {
+        "collar_diameter": "universal",
+        "voltage": "universal"
+      },
+      "description": "Activated carbon and ion-exchange resin filters for water tank holders to soften water and purify taste."
+    },
+    {
+      "id": "A_BRUSH_GROUPHEAD_WOOD",
+      "name": "Heavy Bristle Group Head Cleaning Brush with Scoop",
+      "sku": "ACC-BRSH-GH",
+      "category": "maintenance",
+      "price": 11.95,
+      "margin_rate": 0.70,
+      "fits": {
+        "collar_diameter": "universal",
+        "voltage": "universal"
+      },
+      "description": "Ergonomic angled brush with durable nylon bristles and integrated backflush powder measuring spoon."
+    },
+    {
+      "id": "A_WDT_NEEDLE_TOOL",
+      "name": "0.35mm Needle Espresso WDT Distribution Tool",
+      "sku": "ACC-WDT-035",
+      "category": "workflow_tools",
+      "price": 19.95,
+      "margin_rate": 0.68,
+      "fits": {
+        "collar_diameter": "universal",
+        "voltage": "universal"
+      },
+      "description": "Weiss Distribution Technique tool with 8 ultra-thin 0.35mm acupuncture stainless steel needles to eliminate clumps."
+    },
+    {
+      "id": "A_DOSE_CUP_54",
+      "name": "54mm Stainless Steel Dosing Cup",
+      "sku": "ACC-DC-54-SS",
+      "category": "workflow_tools",
+      "price": 21.95,
+      "margin_rate": 0.58,
+      "fits": {
+        "collar_diameter": "54mm",
+        "voltage": "universal"
+      },
+      "description": "Food-grade stainless dosing cup engineered to invert cleanly into 54mm portafilters."
+    },
+    {
+      "id": "A_DOSE_CUP_58",
+      "name": "58mm Stainless Steel Dosing Cup",
+      "sku": "ACC-DC-58-SS",
+      "category": "workflow_tools",
+      "price": 23.95,
+      "margin_rate": 0.58,
+      "fits": {
+        "collar_diameter": "58mm",
+        "voltage": "universal"
+      },
+      "description": "Commercial 58mm dosing cup for weighing ground espresso before portafilter transfer."
+    },
+    {
+      "id": "A_BLIND_DISC_54",
+      "name": "54mm Rubber Backflush Cleaning Disc",
+      "sku": "ACC-BLD-54-RUB",
+      "category": "maintenance",
+      "price": 7.95,
+      "margin_rate": 0.75,
+      "fits": {
+        "collar_diameter": "54mm",
+        "voltage": "universal"
+      },
+      "description": "Flexible food-safe rubber blanking insert for backflushing 54mm group heads with cleaning tablets."
+    },
+    {
+      "id": "A_BLIND_DISC_58",
+      "name": "58mm Stainless Steel Blind Filter Basket",
+      "sku": "ACC-BLD-58-SS",
+      "category": "maintenance",
+      "price": 12.95,
+      "margin_rate": 0.65,
+      "fits": {
+        "collar_diameter": "58mm",
+        "voltage": "universal"
+      },
+      "description": "Solid stainless steel blank backflush disk for commercial 58mm portafilter group head maintenance."
+    },
+    {
+      "id": "A_SINGLE_DOSE_HOPPER",
+      "name": "Silicone Bellows Single-Dose Hopper for Barista Series",
+      "sku": "ACC-HOP-SD-BEL",
+      "category": "workflow_tools",
+      "price": 36.95,
+      "margin_rate": 0.62,
+      "fits": {
+        "collar_diameter": "universal",
+        "series": "Barista",
+        "voltage": "universal"
+      },
+      "description": "Low-retention single-dosing hopper with air pump silicone bellows designed for Barista Express and Touch grinders."
+    },
+    {
+      "id": "A_STEAM_TIP_4HOLE",
+      "name": "4-Hole Commercial Steam Wand Tip Upgrade",
+      "sku": "ACC-STM-TIP-4H",
+      "category": "maintenance",
+      "price": 18.50,
+      "margin_rate": 0.65,
+      "fits": {
+        "collar_diameter": "58mm",
+        "steam_wand_type": "commercial_360",
+        "voltage": "universal"
+      },
+      "description": "Stainless 4-hole replacement nozzle providing professional microfoam swirling vortex for Dual Boiler wands."
+    },
+    {
+      "id": "A_KNOCKBOX_BIG_BLACK",
+      "name": "Large Floor Standing Knock Tube",
+      "sku": "ACC-KB-TUBE-LRG",
+      "category": "accessories_universal",
+      "price": 74.95,
+      "margin_rate": 0.44,
+      "fits": {
+        "collar_diameter": "universal",
+        "voltage": "universal"
+      },
+      "description": "Heavy duty commercial waste disposal knock tube with removable top collar for high-volume coffee stations."
+    },
+    {
+      "id": "A_BARISTA_TOWELS_3PK",
+      "name": "Premium Microfiber Barista Towel Trio",
+      "sku": "ACC-TWL-BAR-3",
+      "category": "accessories_universal",
+      "price": 14.95,
+      "margin_rate": 0.72,
+      "fits": {
+        "collar_diameter": "universal",
+        "voltage": "universal"
+      },
+      "description": "Lint-free waffle weave microfiber towels with carabiner clip for steam wand sanitation and counter wipe-down."
+    },
+    {
+      "id": "A_WATER_HARDNESS_STRIPS",
+      "name": "Total Water Hardness Testing Strips (50 Strips)",
+      "sku": "ACC-WTR-TEST-50",
+      "category": "maintenance",
+      "price": 9.95,
+      "margin_rate": 0.75,
+      "fits": {
+        "collar_diameter": "universal",
+        "voltage": "universal"
+      },
+      "description": "Rapid diagnostic test strips to calibrate machine descaling frequency based on local water calcium carbonate levels."
+    },
+    {
+      "id": "A_TAMPER_STAND_OAK",
+      "name": "Solid Oak Portafilter & Tamper Station",
+      "sku": "ACC-STN-OAK",
+      "category": "workflow_tools",
+      "price": 46.95,
+      "margin_rate": 0.54,
+      "fits": {
+        "collar_diameter": "universal",
+        "voltage": "universal"
+      },
+      "description": "Natural oak wood tamping station with non-slip silicone feet for holding tamper, distributor, and portafilter."
+    }
+  ]
+}

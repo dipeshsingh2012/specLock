@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Git commit-msg hook enforcing Conventional Commits v1.0.0 for SpecLock
+
+set -e
+
+COMMIT_MSG_FILE="$1"
+
+# Determine python executable (prefer repo virtualenv)
+if [ -x "$(pwd)/.venv/bin/python3" ]; then
+    PYTHON="$(pwd)/.venv/bin/python3"
+elif command -v python3 >/dev/null 2>&1; then
+    PYTHON="python3"
+else
+    echo "Error: Python 3 not found to validate commit message." >&2
+    exit 1
+fi
+
+"$PYTHON" "$(pwd)/scripts/check_commit_msg.py" "$COMMIT_MSG_FILE"
