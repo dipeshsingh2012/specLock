@@ -1,0 +1,108 @@
+name: Build and Deploy to Cloud Run
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  # ----------------------------------------------------------------------------
+  # GCP Infrastructure & Registry Settings
+  # (Can be overridden via GitHub Settings -> Secrets and variables -> Actions -> Variables)
+  # ----------------------------------------------------------------------------
+  PROJECT_ID: ${{ vars.GCP_PROJECT_ID || 'speclock-prod-1234' }}
+  REGION: ${{ vars.GCP_REGION || 'us-central1' }}
+  GAR_LOCATION: ${{ vars.GCP_GAR_LOCATION || 'us-central1' }}
+  REPOSITORY: ${{ vars.GCP_REPOSITORY || 'speclock-repo' }}
+  SERVICE: ${{ vars.GCP_SERVICE || 'speclock-api' }}
+
+  # ----------------------------------------------------------------------------
+  # SpecLock Application Runtime Configuration
+  # ----------------------------------------------------------------------------
+  SPECLOCK_ALPHA: ${{ vars.SPECLOCK_ALPHA || '0.7' }}
+  SPECLOCK_BETA: ${{ vars.SPECLOCK_BETA || '0.3' }}
+  SPECLOCK_PRIMARY_SPEC: ${{ vars.SPECLOCK_PRIMARY_SPEC || 'collar_diameter' }}
+  SPECLOCK_MODEL: ${{ vars.SPECLOCK_MODEL || 'sentence-transformers/all-MiniLM-L6-v2' }}
+  SPECLOCK_DATA_SOURCE: ${{ vars.SPECLOCK_DATA_SOURCE || 'json' }}
+  SPECLOCK_SLA_MAX_LATENCY_MS: ${{ vars.SPECLOCK_SLA_MAX_LATENCY_MS || '50.0' }}
+
+  # ----------------------------------------------------------------------------
+  # Machine Learning & Offline Cache Settings
+  # ----------------------------------------------------------------------------
+  HF_HOME: /app/model_cache
+  TRANSFORMERS_OFFLINE: "1"
+  HF_HUB_OFFLINE: "1"
+
+jobs:
+  deploy:
+    name: Build & Deploy to Cloud Run
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Configure Docker for Artifact Registry
+        run: |
+          gcloud auth configure-docker ${{ env.GAR_LOCATION }}-docker.pkg.dev --quiet
+
+      - name: Build and Push Docker Image
+        run: |
+          IMAGE_URI="${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.SERVICE }}"
+          echo "Building image: ${IMAGE_URI}:${{ github.sha }}"
+          docker build \
+            -t "${IMAGE_URI}:${{ github.sha }}" \
+            -t "${IMAGE_URI}:latest" \
+            .
+          echo "Pushing image to Artifact Registry..."
+          docker push "${IMAGE_URI}:${{ github.sha }}"
+          docker push "${IMAGE_URI}:latest"
+
+      - name: Deploy to Cloud Run
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          service: ${{ env.SERVICE }}
+          region: ${{ env.REGION }}
+          image: ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.SERVICE }}:${{ github.sha }}
+          env_vars: |
+            SPECLOCK_ALPHA=${{ env.SPECLOCK_ALPHA }}
+            SPECLOCK_BETA=${{ env.SPECLOCK_BETA }}
+            SPECLOCK_PRIMARY_SPEC=${{ env.SPECLOCK_PRIMARY_SPEC }}
+            SPECLOCK_MODEL=${{ env.SPECLOCK_MODEL }}
+            SPECLOCK_DATA_SOURCE=${{ env.SPECLOCK_DATA_SOURCE }}
+            SPECLOCK_SLA_MAX_LATENCY_MS=${{ env.SPECLOCK_SLA_MAX_LATENCY_MS }}
+            HF_HOME=${{ env.HF_HOME }}
+            TRANSFORMERS_OFFLINE=${{ env.TRANSFORMERS_OFFLINE }}
+            HF_HUB_OFFLINE=${{ env.HF_HUB_OFFLINE }}
+          flags: |
+            --allow-unauthenticated
+            --port=8080
+            --memory=2Gi
+            --cpu=2
+            --min-instances=1
+            --max-instances=10
+            --concurrency=80
+            --timeout=60s
+
+      - name: Verify Live Service Health
+        run: |
+          SERVICE_URL=$(gcloud run services describe ${{ env.SERVICE }} --region ${{ env.REGION }} --format 'value(status.url)')
+          echo "================================================================="
+          echo "🚀 SpecLock Production API is LIVE at: ${SERVICE_URL}"
+          echo "📖 Interactive Swagger UI: ${SERVICE_URL}/docs"
+          echo "================================================================="
+          
+          echo "Verifying health endpoint..."
+          curl -f "${SERVICE_URL}/health"
+          echo -e "\n✅ Deployment verified successfully!"

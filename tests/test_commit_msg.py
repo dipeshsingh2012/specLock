@@ -26,7 +26,7 @@ def test_allowed_types_and_scopes_presence():
     expected_types = {"feat", "fix", "docs", "style", "refactor", "perf", "test", "build", "ci", "chore", "revert"}
     assert expected_types.issubset(ALLOWED_TYPES)
 
-    expected_scopes = {"api", "graph", "ranker", "catalog", "config", "deps", "tests", "docs", "readme", "ci", "build"}
+    expected_scopes = {"api", "graph", "ranker", "catalog", "config", "deps", "tests", "docs", "readme", "ci", "build", "deploy"}
     assert expected_scopes.issubset(ALLOWED_SCOPES)
     assert MAX_HEADER_LENGTH == 100
 

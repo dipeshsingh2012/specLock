@@ -42,6 +42,7 @@ ALLOWED_SCOPES: Set[str] = {
     "readme",
     "ci",
     "build",
+    "deploy",
 }
 
 HEADER_PATTERN = re.compile(
