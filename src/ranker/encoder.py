@@ -5,6 +5,8 @@ Bi-encoder dense vector embedding and catalog caching for SpecLock Stage 2:
 - Pre-computes and caches normalized embeddings for O(1) runtime lookup
 """
 
+import os
+from pathlib import Path
 from typing import Dict, List, Optional
 import numpy as np
 from sentence_transformers import SentenceTransformer
@@ -21,9 +23,23 @@ class CatalogEmbeddingCache:
 
     def __init__(self, model_name: Optional[str] = None):
         self.model_name = model_name or settings.model_name
-        self.model = SentenceTransformer(self.model_name)
+        model_target = self._resolve_model_path(self.model_name)
+        self.model = SentenceTransformer(model_target)
         self._accessory_cache: Dict[str, np.ndarray] = {}
         self._machine_cache: Dict[str, np.ndarray] = {}
+
+    @staticmethod
+    def _resolve_model_path(name_or_path: str) -> str:
+        """
+        Resolves model identifier to local baked directory if present on disk,
+        preventing external Hugging Face network requests in container environments.
+        """
+        if Path(name_or_path).is_dir():
+            return name_or_path
+        baked_dir = os.getenv("SPECLOCK_MODEL_DIR", "/app/models/all-MiniLM-L6-v2")
+        if Path(baked_dir).is_dir():
+            return baked_dir
+        return name_or_path
 
     def encode_text(self, text: str) -> np.ndarray:
         """

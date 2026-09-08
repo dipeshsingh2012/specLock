@@ -121,3 +121,22 @@ def test_precompute_catalog_embeddings(
     new_encoder.precompute_catalog_embeddings(accessories=[])
     assert new_encoder.accessory_cache_size == 2
 
+
+def test_resolve_model_path_existing_dir(tmp_path):
+    """Verify _resolve_model_path returns directory path when directory exists."""
+    assert CatalogEmbeddingCache._resolve_model_path(str(tmp_path)) == str(tmp_path)
+
+
+def test_resolve_model_path_baked_dir_fallback(monkeypatch, tmp_path):
+    """Verify fallback to SPECLOCK_MODEL_DIR when name_or_path is not a dir but baked dir exists."""
+    monkeypatch.setenv("SPECLOCK_MODEL_DIR", str(tmp_path))
+    result = CatalogEmbeddingCache._resolve_model_path("sentence-transformers/all-MiniLM-L6-v2")
+    assert result == str(tmp_path)
+
+
+def test_resolve_model_path_huggingface_id_when_no_dir(monkeypatch):
+    """Verify returns model ID when neither name_or_path nor SPECLOCK_MODEL_DIR is a dir."""
+    monkeypatch.setenv("SPECLOCK_MODEL_DIR", "/nonexistent/model/path")
+    result = CatalogEmbeddingCache._resolve_model_path("sentence-transformers/all-MiniLM-L6-v2")
+    assert result == "sentence-transformers/all-MiniLM-L6-v2"
+

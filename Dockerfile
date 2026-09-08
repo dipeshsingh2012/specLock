@@ -30,9 +30,11 @@ RUN pip install --no-cache-dir --upgrade pip && \
 COPY pyproject.toml /app/
 RUN pip install --no-cache-dir .
 
-# 3. Pre-download sentence-transformers weights into image layer (eliminates cold starts)
+# 3. Pre-download sentence-transformers weights and bake directly to disk
+ENV SPECLOCK_MODEL_DIR=/app/models/all-MiniLM-L6-v2 \
+    SPECLOCK_MODEL=/app/models/all-MiniLM-L6-v2
 COPY scripts/download_model.py /app/scripts/
-RUN python3 /app/scripts/download_model.py "sentence-transformers/all-MiniLM-L6-v2"
+RUN python3 /app/scripts/download_model.py "sentence-transformers/all-MiniLM-L6-v2" /app/models/all-MiniLM-L6-v2
 
 # Enforce offline mode in production container runtime
 ENV TRANSFORMERS_OFFLINE=1 \

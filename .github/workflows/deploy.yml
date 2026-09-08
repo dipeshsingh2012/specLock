@@ -22,7 +22,8 @@ env:
   SPECLOCK_ALPHA: ${{ vars.SPECLOCK_ALPHA || '0.7' }}
   SPECLOCK_BETA: ${{ vars.SPECLOCK_BETA || '0.3' }}
   SPECLOCK_PRIMARY_SPEC: ${{ vars.SPECLOCK_PRIMARY_SPEC || 'collar_diameter' }}
-  SPECLOCK_MODEL: ${{ vars.SPECLOCK_MODEL || 'sentence-transformers/all-MiniLM-L6-v2' }}
+  SPECLOCK_MODEL: ${{ vars.SPECLOCK_MODEL || '/app/models/all-MiniLM-L6-v2' }}
+  SPECLOCK_MODEL_DIR: /app/models/all-MiniLM-L6-v2
   SPECLOCK_DATA_SOURCE: ${{ vars.SPECLOCK_DATA_SOURCE || 'json' }}
   SPECLOCK_SLA_MAX_LATENCY_MS: ${{ vars.SPECLOCK_SLA_MAX_LATENCY_MS || '50.0' }}
 
@@ -80,6 +81,7 @@ jobs:
             SPECLOCK_BETA=${{ env.SPECLOCK_BETA }}
             SPECLOCK_PRIMARY_SPEC=${{ env.SPECLOCK_PRIMARY_SPEC }}
             SPECLOCK_MODEL=${{ env.SPECLOCK_MODEL }}
+            SPECLOCK_MODEL_DIR=${{ env.SPECLOCK_MODEL_DIR }}
             SPECLOCK_DATA_SOURCE=${{ env.SPECLOCK_DATA_SOURCE }}
             SPECLOCK_SLA_MAX_LATENCY_MS=${{ env.SPECLOCK_SLA_MAX_LATENCY_MS }}
             HF_HOME=${{ env.HF_HOME }}
