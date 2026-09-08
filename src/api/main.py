@@ -67,8 +67,8 @@ app = FastAPI(
     },
     servers=[
         {
-            "url": "http://localhost:8000",
-            "description": "Local development server",
+            "url": "/",
+            "description": "Current Environment",
         },
     ],
     swagger_ui_parameters={

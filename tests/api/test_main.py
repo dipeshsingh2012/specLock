@@ -66,7 +66,7 @@ def test_openapi_schema(client: TestClient):
 
     # 2. Servers & tags
     assert len(schema["servers"]) > 0
-    assert schema["servers"][0]["url"] == "http://localhost:8000"
+    assert schema["servers"][0]["url"] == "/"
     tag_names = [t["name"] for t in schema.get("tags", [])]
     assert "recommendations" in tag_names
     assert "system" in tag_names
